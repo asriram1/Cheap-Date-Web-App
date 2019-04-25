@@ -22,15 +22,24 @@
             </div>
 
             <div class="container">
-                <h1> Search below! (not yet actually it sucks)</h1>
-                <form name="search" method="POST" action="/search">
-                    <table>
-                        <td>Location</td>
-                        <td><input type="text" name="location" ></td>
-                        <td>Price (1 for <$20 total, 2 for $20-60, 3 for $60-100, 4 for $100+  </td>
-                        <td><input type="text" name="price" ></td>
-                        <td colspan="2"><input type="submit" value="Save" >
-                    </table>
+                <h1> Search below!</h1>
+                <form action="/results" method="POST">
+                    <p>Enter your city:
+                        <input type="text" name="loc"/>
+                    </p>
+                    <p>Enter the earliest day your date could be (YYYY-MM-DD):
+                        <input type="text" name="start"/>
+                    </p>
+                    <p>Enter the latest day your date could be (YYYY-MM-DD):
+                        <input type="text" name="end"/>
+                    </p>
+                    <p>On a scale of 1 to 4, how much do you want to spend on food?
+                        <input type="text" name="number"/>
+                    </p>
+                    <p>What kind of food would you like to eat?
+                        <input type="text" name="food"/>
+                    </p>
+                    <input type="submit"/>
                 </form>
             </div>
         </div>

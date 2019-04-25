@@ -1,0 +1,11 @@
+html
+    head
+        title= results
+    body
+        h1 Search Results
+        ul
+          each val in arr
+            h2  #{val.restName}
+            p price : #{val.restPrice}
+            p cinema : #{val.cinema}
+

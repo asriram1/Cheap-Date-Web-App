@@ -1,5 +1,18 @@
-
+var configAuth = require('./config/auth');
+var request = require('request');
 module.exports = function(app, passport) {
+
+    function blah(options1, index, resultList1) {
+        request(options1, function(error1, response1, body1) {
+            var rest2 = JSON.parse(body1);
+            var cinName;
+            cinName = rest2.cinemas[index].name.toString();
+            resultList1.arr[index].cinema = cinName;
+            cin = cinName;
+        });
+        console.log(cin);
+
+    }
 
     /* ***********
     HOME PAGE STUFF
@@ -13,79 +26,84 @@ module.exports = function(app, passport) {
     SEARCH STUFF
     ************** */
 
-    app.get('/search', function(req, res) {
-        res.render('index.ejs');
-    });
+    app.post('/results', function(req, res) {
 
-    app.post('/search', function(req, res) {
-        let loc = req.body.location;
-        let price= req.body.price;
-        var request = require("request");
+        let loc = req.body.loc;
+        let start = req.body.start;
+        let end = req.body.end;
+        let number = req.body.number;
+        let food = req.body.food;
+        var fuck;
+        var coord;
+        let list_coords = [];
+        var list_cinemas;
+        var rest;
+        var rest_names = [];
+        var rest_prices = [];
+        var rest_ratings = [];
+        var rest_address = [];
+        var cinName;
+        var resultList = {arr : []};
 
         var options = {
             method: 'GET',
             url: 'https://api.yelp.com/v3/businesses/search',
-            qs: {location: loc},
+            qs: {term: food, location: loc, categories: 'restaurants,food', price: number},
             headers:
                 {
                     'Postman-Token': '0eb7a9f0-eec2-4883-a045-dc85e3dadf2b',
                     'cache-control': 'no-cache',
-                    Authorization: 'Bearer NKmWWE3gjKqwPlldeUusFOCGs50athIC0pLEHEga1U1GuCPbazagXtIkuakgesYfVBc-qfLPQzria8pfGCx5lqypsyMEecb-UuXxMmqOrU_cEcv1kbY97BWhWA-VXHYx'
+                    Authorization: configAuth.YelpAuth
                 }
         };
 
         request(options, function (error, response, body) {
             if (error) throw new Error(error);
-
-            res.write('Results for: ' + loc + '\n');
-
+            var i;
             var rest = JSON.parse(body);
 
-            //for loop to print them all
-            var i;
-            for(i = 0; i < rest.businesses.length; i++){
-                var current = rest.businesses[i];
-                res.write(rest.businesses[i].name.toString() + " \n");
+            for (i = 0; i < rest.businesses.length; i++) {
+                var newResult = {
+                    coord: rest.businesses[i].coordinates.latitude.toString() + "," + rest.businesses[i].coordinates.longitude.toString(),
+                    restName: rest.businesses[i].name.toString(),
+                    restPrice: rest.businesses[i].price.toString(),
+                    cinema: ''
+                };
+
+                 resultList.arr.push(newResult);
             }
 
-            res.end();
+            var x;
+            for (x=0; x < resultList.arr.length; x++) {
+                var options1 = {
+                    method: 'GET',
+                    url: 'https://api.internationalshowtimes.com/v4/cinemas',
+                    qs:
+                        {
+                            location: resultList.arr[x].coord,
+                            distance: '100'
+                        },
+                    headers:
+                        {
+                            'Postman-Token': '01646ae3-0658-4a31-ac9d-3a746ae22c21',
+                            'cache-control': 'no-cache',
+                            'X-API-Key': 'gw2l3BVrsf7CB3t9hMTnG9qeaDYIzpC7'
+                        }
+                };
+
+                blah(options1, x, resultList);
+            }
+
+            res.render('results' , resultList);
+
+            //res.render('search.html', {location: coord, bus: selectBusinesses});
+
+
+            //for loop to print them all
         });
 
     });
 
-        // app.get('/search', function(req, res) { //PROBLEM LINE
-        //
-        //
-        //     var options = {
-        //         method: 'GET',
-        //         url: 'https://api.yelp.com/v3/businesses/search',
-        //         qs: {location: loc},
-        //         headers:
-        //             {
-        //                 'Postman-Token': '0eb7a9f0-eec2-4883-a045-dc85e3dadf2b',
-        //                 'cache-control': 'no-cache',
-        //                 Authorization: 'Bearer NKmWWE3gjKqwPlldeUusFOCGs50athIC0pLEHEga1U1GuCPbazagXtIkuakgesYfVBc-qfLPQzria8pfGCx5lqypsyMEecb-UuXxMmqOrU_cEcv1kbY97BWhWA-VXHYx'
-        //             }
-        //     };
-        //
-        //     request(options, function (error, response, body) {
-        //         if (error) throw new Error(error);
-        //
-        //         res.write('Results for: ' + loc + '\n');
-        //
-        //         var rest = JSON.parse(body);
-        //
-        //         //for loop to print them all
-        //         var i;
-        //         for(i = 0; i < rest.businesses.length; i++){
-        //             var current = rest.businesses[i];
-        //             res.write(rest.businesses[i].name.toString() + " \n");
-        //         }
-        //
-        //         res.end();
-        //     });
-        //
-        // });
 
     /* ***********
     LOGIN STUFF
