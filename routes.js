@@ -1,22 +1,16 @@
 var configAuth = require('./config/auth');
 var request = require('request');
+
 module.exports = function(app, passport) {
     var resultList = {arr : []};
     var cinName;
-    var rest2;
+    var currentRest;
 
     function blah(options1) {
         request(options1, function(error1, response1, body1) {
-            rest2 = JSON.parse(body1);
-            cinName = rest2.cinemas[0].name.toString();
+            var rest2 = JSON.parse(body1);
+            currentRest = rest2.cinemas[0].name;
         });
-        if (rest2 !== undefined) {
-            return cinName;
-        }
-        else {
-            return "watch netflix";
-        }
-
 
     }
 
@@ -85,18 +79,14 @@ module.exports = function(app, passport) {
                         }
                 };
 
-                 resultList.arr[x].cinema = blah(options1);
+                blah(options1);
+                resultList.arr[x].cinema = currentRest;
+                console.log(resultList.arr[x].cinema);
             }
 
             //res.render('search.html', {location: coord, bus: selectBusinesses});
-
-
-            //for loop to print them all
             res.render('results.pug', resultList);
         });
-
-
-
 
     });
 
