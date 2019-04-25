@@ -1,8 +1,8 @@
-// app
+// app.js
 
 var express  = require('express');
 var app      = express();
-var port     = process.env.PORT || 8080;
+var port     = process.env.PORT || 3000;
 var mongoose = require('mongoose');
 var passport = require('passport');
 var flash    = require('connect-flash');
@@ -19,15 +19,13 @@ mongoose.connect(configDB.url, { useNewUrlParser: true }); // connect to our dat
 
 require('./config/passport')(passport); // pass passport for configuration
 
-// set up our express application
-app.use(morgan('dev')); // log every request to the console
+app.use(morgan('dev')); // console stuff
 app.use(cookieParser()); // read cookies (needed for auth)
 app.use(bodyParser()); // get information from html forms
 
 app.set('view engine', 'ejs'); // set up ejs for templating
-app.set('view engine', 'pug');
+app.set('view engine', 'pug'); //also pug
 
-// required for passport
 app.use(session({ secret: 'lmao' })); // session secret, need it for whatever reason in session
 app.use(passport.initialize());
 app.use(passport.session());
@@ -37,6 +35,5 @@ app.use(express.static("public"));
 
 require('./routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
 
-// launch ======================================================================
 app.listen(port);
 console.log('Server started on port: ' + port);

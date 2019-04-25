@@ -1,0 +1,18 @@
+Idea 1: Cheap Date
+
+Our first idea provides a solution for college students, who are broke, but still want
+to plan a great date on a budget. Given a user’s budget and location, our application
+will plan a dinner and a movie. It will determine which dinner and movie combination
+is best based on price, time, location, and reviews. If travel is required, the application
+will consider this when evaluating the cost and timing of a potential date. We would utilize the RottenTomatoes, Yelp/Grubhub, and the Uber/Lyft API's for this project, utilizing OAuth for accounts with either Facebook or Google, and a database saving user's favorite "date spots".
+
+Idea 2: The Personalized Travel Planner
+
+An idea that will resonate with the greater public is that of a personalized travel planner. Although there
+do currently exist travel planners on the market, most of these are focused on just one aspect of the trip,
+namely the hotels and the flights. The personalized travel planner will enable an end-to-end planning of your trip,
+which starts at your doorstep, covers the entirety of your travel, and ends where the trip started- your home.
+It will comprise of planning which includes travel to the airport, the flights, hotel/apartments at the destination,
+as well as an activity plan in the given city. All of the above will be enabled through a budget specified by the client. We would utilize multiple API's, including Yelp/Grubhub, KAYAK, Uber/Lyft, and other related travel API's. OAuth would be utilized with user profiles via Facebook or Google. Databases would be used to save favorite trips, or favorite destinations per user.
+
+

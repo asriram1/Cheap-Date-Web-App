@@ -1,0 +1,27 @@
+1. As a user I want to be able to login using my Facebook, as a guest, or as a new account for the app:
+I will be presented a Facebook login box or app login box, based on my selection, which reappear with an error message if the login attempts fail. Logging in will allow me to search, save and view saved dates. If I don’t want to login, I can select to use the app as a guest/create my own account. Upon login (or continuing as guest), I will be presented with my search box, with search options.
+At the top right of the app I have access to a button which is linked to my user profile. Clicking on this will take me to my user profile, which has information on my past dates. This page also has other relevant information related to my current location, and default preferences for budget, mode of transportation, preferred movie genre, and favourite cuisine.
+
+2. As a user I should be able to search for a date depending on what I’m looking for.
+Upon logging in, or proceeding forward as a guest, I will be presented with list of search criteria. This includes a MM/DD/YYYY format of date or range, along with the preferred time of day and range. Below that is:
+* The budget, represented in dollars, indicating how much I am willing to spend for the date.
+* The location (either manually entered or detected) and range of travel.
+* The modes of transportation. This is presented as a checklist of different ways to arrive at a destination, and I would choose which ones I would use (Car, Uber, MBTA, Walking)
+* Event Options, which includes options such as Stand-up comedy shows, famous attractions, night-clubs etc.
+* Movie options, including length and genre
+* Meal options, including types of food.
+After hitting the search button, I will be presented with a list of possible dates, ranked from top to bottom based on similarity to my search factors. Each search result appears as “Meal, Event”, where all possible meal options are clustered together, and all event options are also clustered together. The corresponding titles, time, price, and other important data also appear below in smaller font.
+
+3. As a user, it should be easy for me to see more detailed information on a potential date idea (meal, movie, etc.)
+After selecting a specific date from either the list of search results or saved dates, a drop down window will appear with more information on that date.
+The window will include:
+*A map, showing travel from my current location, to dinner, movie or event.
+*There will be an icon below the map for each of the modes of transportation selected, with the time duration of travel for each.
+*Short excerpts from online reviews for the restaurant, movie or event.
+*Next to the excerpts, there will be link that I can hit to be sent to an external website where those reviews were posted.
+*If I haven’t saved the date yet, there will be a save button in the top right corner of the window.
+
+4. As a logged in user, I want to view “saved” dates in order to see which dates I am considering.
+I will have the option to click a button that lets me view all the dates that I have saved. Upon clicking that button, I will be given the option to sort the dates by the time they were saved, by the time they occur, or by ranking.
+After selecting how to sort, my list of saved dates will appear in the requested order. If multiple ideas for the a date on a single day are selected, I can schedule and select the timings for each. The corresponding cost for the entire date, as well as travel info from each of the places will be updated, in a map on the side of the page. The color for the cost of a given date will indicate if a given idea is below the budget, right at the budget or exceeds the budget.
+For example green would indicate that the cost is below the budget, whereas red indicates the cost is well above the budget.
