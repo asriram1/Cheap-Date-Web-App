@@ -22,39 +22,70 @@ module.exports = function(app, passport) {
         let price= req.body.price;
         var request = require("request");
 
-        app.get('/search-results', function(req, res) {
-
-            var options = {
-                method: 'GET',
-                url: 'https://api.yelp.com/v3/businesses/search',
-                qs: {location: loc},
-                headers:
-                    {
-                        'Postman-Token': '0eb7a9f0-eec2-4883-a045-dc85e3dadf2b',
-                        'cache-control': 'no-cache',
-                        Authorization: 'Bearer NKmWWE3gjKqwPlldeUusFOCGs50athIC0pLEHEga1U1GuCPbazagXtIkuakgesYfVBc-qfLPQzria8pfGCx5lqypsyMEecb-UuXxMmqOrU_cEcv1kbY97BWhWA-VXHYx'
-                    }
-            };
-
-            request(options, function (error, response, body) {
-                if (error) throw new Error(error);
-
-                res.write('Results for: ' + loc + '\n');
-
-                var rest = JSON.parse(body);
-
-                //for loop to print them all
-                var i;
-                for(i = 0; i < rest.businesses.length; i++){
-                    var current = rest.businesses[i];
-                    res.write(rest.businesses[i].name.toString() + " \n");
+        var options = {
+            method: 'GET',
+            url: 'https://api.yelp.com/v3/businesses/search',
+            qs: {location: loc},
+            headers:
+                {
+                    'Postman-Token': '0eb7a9f0-eec2-4883-a045-dc85e3dadf2b',
+                    'cache-control': 'no-cache',
+                    Authorization: 'Bearer NKmWWE3gjKqwPlldeUusFOCGs50athIC0pLEHEga1U1GuCPbazagXtIkuakgesYfVBc-qfLPQzria8pfGCx5lqypsyMEecb-UuXxMmqOrU_cEcv1kbY97BWhWA-VXHYx'
                 }
+        };
 
-                res.end();
-            });
+        request(options, function (error, response, body) {
+            if (error) throw new Error(error);
 
+            res.write('Results for: ' + loc + '\n');
+
+            var rest = JSON.parse(body);
+
+            //for loop to print them all
+            var i;
+            for(i = 0; i < rest.businesses.length; i++){
+                var current = rest.businesses[i];
+                res.write(rest.businesses[i].name.toString() + " \n");
+            }
+
+            res.end();
         });
+
     });
+
+        // app.get('/search', function(req, res) { //PROBLEM LINE
+        //
+        //
+        //     var options = {
+        //         method: 'GET',
+        //         url: 'https://api.yelp.com/v3/businesses/search',
+        //         qs: {location: loc},
+        //         headers:
+        //             {
+        //                 'Postman-Token': '0eb7a9f0-eec2-4883-a045-dc85e3dadf2b',
+        //                 'cache-control': 'no-cache',
+        //                 Authorization: 'Bearer NKmWWE3gjKqwPlldeUusFOCGs50athIC0pLEHEga1U1GuCPbazagXtIkuakgesYfVBc-qfLPQzria8pfGCx5lqypsyMEecb-UuXxMmqOrU_cEcv1kbY97BWhWA-VXHYx'
+        //             }
+        //     };
+        //
+        //     request(options, function (error, response, body) {
+        //         if (error) throw new Error(error);
+        //
+        //         res.write('Results for: ' + loc + '\n');
+        //
+        //         var rest = JSON.parse(body);
+        //
+        //         //for loop to print them all
+        //         var i;
+        //         for(i = 0; i < rest.businesses.length; i++){
+        //             var current = rest.businesses[i];
+        //             res.write(rest.businesses[i].name.toString() + " \n");
+        //         }
+        //
+        //         res.end();
+        //     });
+        //
+        // });
 
     /* ***********
     LOGIN STUFF
