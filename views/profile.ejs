@@ -7,8 +7,9 @@
     </p>
     <head>
         <title>Cheap Date</title>
-        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
-        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     </head>
 
     <body>
@@ -23,7 +24,7 @@
                 <!-- local info -->
                 <div class="col-sm-6">
                     <div class="well">
-                        <h3><span class="fa fa-user"></span> Local User Info</h3>
+                        <h3> Local User Info</h3>
                         <p>
                             <strong>id</strong>: <%= user.id %><br>
                             <strong>email</strong>: <%= user.local.email %><br>
@@ -38,7 +39,7 @@
                 <!-- google info -->
                 <div class="col-sm-6">
                     <div class="well">
-                        <h3 class="text-danger"><span class="fa fa-google-plus"></span> Google+ User Info</h3>
+                        <h3 class="text-danger"> Google User Info</h3>
                         <p>
                             <strong>id</strong>: <%= user.google.id %><br>
                             <strong>token</strong>: <%= user.google.token %><br>
