@@ -1,16 +1,22 @@
 var configAuth = require('./config/auth');
 var request = require('request');
 module.exports = function(app, passport) {
+    var resultList = {arr : []};
+    var cinName;
+    var rest2;
 
-    function blah(options1, index, resultList1) {
+    function blah(options1) {
         request(options1, function(error1, response1, body1) {
-            var rest2 = JSON.parse(body1);
-            var cinName;
-            cinName = rest2.cinemas[index].name.toString();
-            resultList1.arr[index].cinema = cinName;
-            cin = cinName;
+            rest2 = JSON.parse(body1);
+            cinName = rest2.cinemas[0].name.toString();
         });
-        console.log(cin);
+        if (rest2 !== undefined) {
+            return cinName;
+        }
+        else {
+            return "watch netflix";
+        }
+
 
     }
 
@@ -33,17 +39,6 @@ module.exports = function(app, passport) {
         let end = req.body.end;
         let number = req.body.number;
         let food = req.body.food;
-        var fuck;
-        var coord;
-        let list_coords = [];
-        var list_cinemas;
-        var rest;
-        var rest_names = [];
-        var rest_prices = [];
-        var rest_ratings = [];
-        var rest_address = [];
-        var cinName;
-        var resultList = {arr : []};
 
         var options = {
             method: 'GET',
@@ -69,7 +64,6 @@ module.exports = function(app, passport) {
                     restPrice: rest.businesses[i].price.toString(),
                     cinema: ''
                 };
-
                  resultList.arr.push(newResult);
             }
 
@@ -81,7 +75,7 @@ module.exports = function(app, passport) {
                     qs:
                         {
                             location: resultList.arr[x].coord,
-                            distance: '100'
+                            distance: '1000'
                         },
                     headers:
                         {
@@ -91,16 +85,18 @@ module.exports = function(app, passport) {
                         }
                 };
 
-                blah(options1, x, resultList);
+                 resultList.arr[x].cinema = blah(options1);
             }
-
-            res.render('results' , resultList);
 
             //res.render('search.html', {location: coord, bus: selectBusinesses});
 
 
             //for loop to print them all
+            res.render('results.pug', resultList);
         });
+
+
+
 
     });
 
