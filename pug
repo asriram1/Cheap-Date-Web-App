@@ -1,5 +1,36 @@
-  h2  #{restName} and #{movieName}!
-  p We have found the perfect date for you!
-  p First you are going to head over to #{restName} to grab some food.
-  p Then, head to #{theater} to see #{movieName}.
-  p The movie starts at #{movieTime}
+///USE THE FOLLOWING FORMAT FOR EACH RESULT OBJECT:
+///YOU CAN CHANGE VARIABLE NAMES AS NEEDED
+  var result1 = {
+    movieName : 'Avengers',
+    theater : 'Regal Fenway',
+    theaterX : 12345,
+    theaterY : 12345,
+    restName : 'Whalburgers',
+    restX : 12345,
+    restY : 12345,
+    restPrice : '$$',
+    movieTime : '5:10',
+    title : 'Expressss',
+    name : 'Gabeeee',
+    size : 12
+  };
+  
+///THIS IS WHAT YOU WANT YOUR LIST TO LOOK LIKE, 
+///NOTICE, IT IS STILL AN OBJECT WITH A KEY, AND AN ARRAY AS VALUE
+  
+  var resultList = {array :  [result1 ,result2]};
+
+///THEN, RENDER
+  res.render('index', resultList);
+  
+  
+  
+///USE THIS IN THE PUG FILE TO DSIPLAY THE RESULTS:
+  ul
+    each val in array
+      h2  #{val.restName} and #{val.movieName}!
+      p We have found the perfect date for you!
+      p First you are going to head over to #{val.restName} to grab some food.
+      p Then, head to #{val.theater} to see #{val.movieName}.
+      p The movie starts at #{val.movieTime}
+
