@@ -1,59 +1,53 @@
 <!-- views/profile.ejs -->
 <!doctype html>
 <html>
-<p class = "aligncenter">
-    <img src="logo.jpg" width = "500"/>
-</p>
-<head>
-    <title>Cheap Date</title>
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
-</head>
-<body>
-<div class="container">
 
-    <div class="page-header text-center">
-        <h1>Profile Page</h1>
-        <a href="/logout" class="btn btn-default btn-sm">Logout</a>
-    </div>
+    <p class = "aligncenter">
+        <img src="logo.jpg" width = "500"/>
+    </p>
+    <head>
+        <title>Cheap Date</title>
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    </head>
 
-    <div class="row">
+    <body>
+        <div class="container">
 
-        <!-- local info -->
-        <div class="col-sm-6">
-            <div class="well">
-                <h3><span class="fa fa-user"></span> Local User Info</h3>
+            <div class="page-header text-center">
+                <h1>Profile Page</h1>
+                <a href="/logout" class="btn btn-default btn-sm">Logout</a>
+            </div>
 
-                <p>
-                    <strong>id</strong>: <%= user.id %><br>
-                    <strong>email</strong>: <%= user.local.email %><br>
-                    <strong>password</strong>: <%= user.local.password %>
-                </p>
+            <div class="row">
+                <!-- local info -->
+                <div class="col-sm-6">
+                    <div class="well">
+                        <h3><span class="fa fa-user"></span> Local User Info</h3>
+                        <p>
+                            <strong>id</strong>: <%= user.id %><br>
+                            <strong>email</strong>: <%= user.local.email %><br>
+                            <strong>password</strong>: <%= user.local.password %>
+                        </p>
 
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- google info -->
+                <div class="col-sm-6">
+                    <div class="well">
+                        <h3 class="text-danger"><span class="fa fa-google-plus"></span> Google+ User Info</h3>
+                        <p>
+                            <strong>id</strong>: <%= user.google.id %><br>
+                            <strong>token</strong>: <%= user.google.token %><br>
+                            <strong>email</strong>: <%= user.google.email %><br>
+                            <strong>name</strong>: <%= user.google.name %>
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
-
-    </div>
-
-    <div class="row">
-
-        <!-- google info -->
-        <div class="col-sm-6">
-            <div class="well">
-                <h3 class="text-danger"><span class="fa fa-google-plus"></span> Google+ User Info</h3>
-
-                <p>
-                    <strong>id</strong>: <%= user.google.id %><br>
-                    <strong>token</strong>: <%= user.google.token %><br>
-                    <strong>email</strong>: <%= user.google.email %><br>
-                    <strong>name</strong>: <%= user.google.name %>
-                </p>
-
-            </div>
-        </div>
-
-    </div>
-
-</div>
-</body>
+    </body>
 </html>
