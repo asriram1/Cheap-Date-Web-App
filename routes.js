@@ -8,6 +8,7 @@ module.exports = function(app, passport) {
 
     function blah(options1) {
         request(options1, function(error1, response1, body1) {
+            if (error1) throw new Error(error1);
             var rest2 = JSON.parse(body1);
             currentRest = rest2.cinemas[0].name;
         });
@@ -69,7 +70,7 @@ module.exports = function(app, passport) {
                     qs:
                         {
                             location: resultList.arr[x].coord,
-                            distance: '1000'
+                            distance: '100'
                         },
                     headers:
                         {
@@ -87,7 +88,6 @@ module.exports = function(app, passport) {
             //res.render('search.html', {location: coord, bus: selectBusinesses});
             res.render('results.pug', resultList);
         });
-
     });
 
 
