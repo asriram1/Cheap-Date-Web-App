@@ -75,7 +75,7 @@ module.exports = function(app, passport) {
                         {
                             'Postman-Token': '01646ae3-0658-4a31-ac9d-3a746ae22c21',
                             'cache-control': 'no-cache',
-                            'X-API-Key': 'gw2l3BVrsf7CB3t9hMTnG9qeaDYIzpC7'
+                            'X-API-Key': configAuth.XAuth
                         }
                 };
 
