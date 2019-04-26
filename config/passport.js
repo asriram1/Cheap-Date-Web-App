@@ -4,7 +4,7 @@
 // along with all the passport stuff, it utilizes flash messages to indicate whether something went wrong with login/signup
 
 // load all the things we need
-var LocalStrategy   = require('passport-local').Strategy;
+var LocalStrategy = require('passport-local').Strategy;
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
 // load up the user model
@@ -55,15 +55,15 @@ module.exports = function(passport) {
 
                 // check to see if theres already a user with that email
                 if (user) {
-                    return done(null, false, req.flash('signupMessage', 'That email is already taken.'));
+                    return done(null, false, req.flash('signupMessage', 'That email/username is already taken.'));
                 } else {
 
                     // if there is no user with that email
                     // create the user
-                    var newUser            = new User();
+                    var newUser = new User();
 
                     // set the user's local credentials
-                    newUser.local.email    = email;
+                    newUser.local.email = email;
                     newUser.local.password = newUser.generateHash(password); // use the generateHash function in our user model
 
                     // save the user
@@ -105,7 +105,7 @@ module.exports = function(passport) {
 
                 // if the user is found but the password is wrong
                 if (!user.validPassword(password))
-                    return done(null, false, req.flash('loginMessage', 'Oops! Wrong password.')); // create the loginMessage and save it to session as flashdata
+                    return done(null, false, req.flash('loginMessage', 'Incorrect Password.')); // create the loginMessage and save it to session as flashdata
 
                 // all is well, return successful user
                 return done(null, user);
@@ -119,9 +119,9 @@ module.exports = function(passport) {
 
     passport.use(new GoogleStrategy({
 
-            clientID        : configAuth.googleAuth.clientID,
-            clientSecret    : configAuth.googleAuth.clientSecret,
-            callbackURL     : configAuth.googleAuth.callbackURL,
+            clientID : configAuth.googleAuth.clientID,
+            clientSecret : configAuth.googleAuth.clientSecret,
+            callbackURL : configAuth.googleAuth.callbackURL,
 
         },
         function(token, refreshToken, profile, done) {
@@ -144,9 +144,9 @@ module.exports = function(passport) {
                         var newUser          = new User();
 
                         // set all of the relevant information
-                        newUser.google.id    = profile.id;
+                        newUser.google.id = profile.id;
                         newUser.google.token = token;
-                        newUser.google.name  = profile.displayName;
+                        newUser.google.name = profile.displayName;
                         newUser.google.email = profile.emails[0].value; // pull the first email
 
                         // save the user
@@ -160,8 +160,6 @@ module.exports = function(passport) {
             });
 
         }));
-
-
 
 
 };
