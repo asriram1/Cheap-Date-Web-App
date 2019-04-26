@@ -11,6 +11,27 @@
         <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
     </head>
 
+    <script>
+        function validate(){
+            var num = document.forms["bigsearch"]["number"];
+            var type = document.forms["bigsearch"]["food"];
+
+            if (num > 4){
+                window.alert("please input a number between 1 and 4");
+                name.focus();
+                return false;
+            }
+            var matches = type.match(/\d+/g);
+            if (matches != null) {
+                window.alert("why are there numbers in your food type");
+                name.focus();
+                return false;
+            }
+            return true;
+
+        }
+    </script>
+
     <body>
         <div class="container">
             <div class="jumbotron">
@@ -22,8 +43,8 @@
             </div>
 
             <div class="container">
-                <h1> Search below!</h1>
-                <form action="/results" method="POST">
+                <h1 style="font-family: 'Lucida Console'"> Search below!</h1>
+                <form name = 'bigsearch' onsubmit="return validate()" action="/results" method="POST">
                     <p>Enter your city:
                         <input type="text" name="loc"/>
                     </p>
@@ -39,7 +60,7 @@
                     <p>What kind of food would you like to eat?
                         <input type="text" name="food"/>
                     </p>
-                    <input type="submit"/>
+                    <input type="submit" value="send"/>
                 </form>
             </div>
         </div>

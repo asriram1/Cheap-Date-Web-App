@@ -52,41 +52,45 @@ module.exports = function(app, passport) {
             var i;
             var rest = JSON.parse(body);
 
-            for (i = 0; i < rest.businesses.length; i++) {
-                var newResult = {
-                    coord: rest.businesses[i].coordinates.latitude.toString() + "," + rest.businesses[i].coordinates.longitude.toString(),
-                    restName: rest.businesses[i].name.toString(),
-                    restPrice: rest.businesses[i].price.toString(),
-                    cinema: ''
-                };
-                 resultList.arr.push(newResult);
+            if (rest.businesses != undefined) {
+
+                for (i = 0; i < rest.businesses.length; i++) {
+                    var newResult = {
+                        coord: rest.businesses[i].coordinates.latitude.toString() + "," + rest.businesses[i].coordinates.longitude.toString(),
+                        restName: rest.businesses[i].name.toString(),
+                        restPrice: rest.businesses[i].price.toString(),
+                        cinema: ''
+                    };
+                    resultList.arr.push(newResult);
+                }
+
+                var x;
+                for (x = 0; x < resultList.arr.length; x++) {
+                    var options1 = {
+                        method: 'GET',
+                        url: 'https://api.internationalshowtimes.com/v4/cinemas',
+                        qs:
+                            {
+                                location: resultList.arr[x].coord,
+                                distance: '100'
+                            },
+                        headers:
+                            {
+                                'Postman-Token': '01646ae3-0658-4a31-ac9d-3a746ae22c21',
+                                'cache-control': 'no-cache',
+                                'X-API-Key': configAuth.XAuth
+                            }
+                    };
+
+                    blah(options1);
+                    resultList.arr[x].cinema = currentRest;
+                    console.log(resultList.arr[x].cinema);
+                }
+
+                //res.render('search.html', {location: coord, bus: selectBusinesses});
+                res.render('results.pug', resultList);
             }
-
-            var x;
-            for (x=0; x < resultList.arr.length; x++) {
-                var options1 = {
-                    method: 'GET',
-                    url: 'https://api.internationalshowtimes.com/v4/cinemas',
-                    qs:
-                        {
-                            location: resultList.arr[x].coord,
-                            distance: '100'
-                        },
-                    headers:
-                        {
-                            'Postman-Token': '01646ae3-0658-4a31-ac9d-3a746ae22c21',
-                            'cache-control': 'no-cache',
-                            'X-API-Key': configAuth.XAuth
-                        }
-                };
-
-                blah(options1);
-                resultList.arr[x].cinema = currentRest;
-                console.log(resultList.arr[x].cinema);
-            }
-
-            //res.render('search.html', {location: coord, bus: selectBusinesses});
-            res.render('results.pug', resultList);
+            else res.render('err.pug');
         });
     });
 
