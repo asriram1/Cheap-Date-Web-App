@@ -14,11 +14,3 @@ After hitting the search button, I will be presented with a list of possible dat
 After selecting a specific date from either the list of search results or saved dates, a drop down window will appear with more information on that date.
 The window will include:
 *A map, showing travel from my current location, to dinner, movie or event.
-*There will be an icon below the map for each of the modes of transportation selected, with the time duration of travel for each.
-*Short excerpts from online reviews for the restaurant, movie or event.
-*Next to the excerpts, there will be link that I can hit to be sent to an external website where those reviews were posted.
-
-4. As a logged in user, I want to view “saved” dates in order to see which dates I am considering.
-I will have the option to click a button that lets me view all the dates that I have saved. Upon clicking that button, I will be given the option to sort the dates by the time they were saved, by the time they occur, or by ranking.
-After selecting how to sort, my list of saved dates will appear in the requested order. If multiple ideas for the a date on a single day are selected, I can schedule and select the timings for each. The corresponding cost for the entire date, as well as travel info from each of the places will be updated, in a map on the side of the page. The color for the cost of a given date will indicate if a given idea is below the budget, right at the budget or exceeds the budget.
-For example green would indicate that the cost is below the budget, whereas red indicates the cost is well above the budget.
