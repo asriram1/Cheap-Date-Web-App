@@ -1,13 +1,11 @@
-1. As a user I want to be able to login using my Facebook, as a guest, or as a new account for the app:
-I will be presented a Facebook login box or app login box, based on my selection, which reappear with an error message if the login attempts fail. Logging in will allow me to search, save and view saved dates. If I don’t want to login, I can select to use the app as a guest/create my own account. Upon login (or continuing as guest), I will be presented with my search box, with search options.
-At the top right of the app I have access to a button which is linked to my user profile. Clicking on this will take me to my user profile, which has information on my past dates. This page also has other relevant information related to my current location, and default preferences for budget, mode of transportation, preferred movie genre, and favourite cuisine.
+1. As a user I want to be able to login using my Google account, as a guest, or as a new account for the app:
+I will be presented a Google login box or app login box, based on my selection, which reappear with an error message if the login attempts fail. Logging in will allow me to search, save and view saved dates. If I don’t want to login, I can select to use the app as a guest/create my own account. Upon login (or continuing as guest), I will be presented with my search box, with search options.
+At the top right of the app I have access to a button which is linked to my user profile. Clicking on this will take me to my user profile, which has information about my profile such as name.
 
 2. As a user I should be able to search for a date depending on what I’m looking for.
 Upon logging in, or proceeding forward as a guest, I will be presented with list of search criteria. This includes a MM/DD/YYYY format of date or range, along with the preferred time of day and range. Below that is:
 * The budget, represented in dollars, indicating how much I am willing to spend for the date.
 * The location (either manually entered or detected) and range of travel.
-* The modes of transportation. This is presented as a checklist of different ways to arrive at a destination, and I would choose which ones I would use (Car, Uber, MBTA, Walking)
-* Event Options, which includes options such as Stand-up comedy shows, famous attractions, night-clubs etc.
 * Movie options, including length and genre
 * Meal options, including types of food.
 After hitting the search button, I will be presented with a list of possible dates, ranked from top to bottom based on similarity to my search factors. Each search result appears as “Meal, Event”, where all possible meal options are clustered together, and all event options are also clustered together. The corresponding titles, time, price, and other important data also appear below in smaller font.
@@ -19,7 +17,6 @@ The window will include:
 *There will be an icon below the map for each of the modes of transportation selected, with the time duration of travel for each.
 *Short excerpts from online reviews for the restaurant, movie or event.
 *Next to the excerpts, there will be link that I can hit to be sent to an external website where those reviews were posted.
-*If I haven’t saved the date yet, there will be a save button in the top right corner of the window.
 
 4. As a logged in user, I want to view “saved” dates in order to see which dates I am considering.
 I will have the option to click a button that lets me view all the dates that I have saved. Upon clicking that button, I will be given the option to sort the dates by the time they were saved, by the time they occur, or by ranking.
